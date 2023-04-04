@@ -1,0 +1,49 @@
+---
+import Header from "@components/header"
+import Footer from "@components/footer.astro"
+
+const { title, isDark } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="theme">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="Boldo, Design, Template, Web Development,Figma, Wireframing, Astro, Framer Motion, Tailwindcss"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src * 'unsafe-inline' 'unsafe-eval';"
+    />
+    <meta
+      name="description"
+      content="Boldo Template Design Remade with Astro, Tailwindcss, & Framer Motion"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+    <link
+      href={"https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"}
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="icon" href="/assets/favicon.ico" />
+    <title>
+      Boldo Design | {title === "" ? "Homepage" : title}
+    </title>
+  </head>
+  <body>
+    <main>
+      <Header client:load {isDark} />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>

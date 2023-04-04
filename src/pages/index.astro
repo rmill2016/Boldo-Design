@@ -1,0 +1,438 @@
+---
+import Layout from "@components/layout.astro"
+import { Image } from "@astrojs/image/components"
+import Carousel from "@components/carousel.astro"
+import { motion } from "framer-motion"
+import { FaArrowRight, FaCheckCircle } from "react-icons/fa/index"
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai/index"
+import { IoIosArrowDropdownCircle } from "react-icons/io/index"
+import { FiEye, FiFeather, FiSun } from "react-icons/fi/index"
+let title = Astro.url.pathname.slice(1)
+title = title.charAt(0).toUpperCase() + title.slice(1)
+let isDark: boolean = false
+
+type TBlogCards = {
+  id: number
+  category: string
+  date: string
+  description: string
+  name: string
+}[]
+
+let blogCards: TBlogCards = [
+  {
+    id: 1,
+    category: "Category",
+    date: "November 22, 2021",
+    description: "Pitch termsheet backing validation focus release.",
+    name: "Chandler Bing",
+  },
+  {
+    id: 2,
+    category: "Category",
+    date: "November 22, 2021",
+    description:
+      "Seed round direct mailing non-disclosure agreement graphical user interface rockstar.",
+    name: "Rachel Green",
+  },
+  {
+    id: 3,
+    category: "Category",
+    date: "November 22, 2021",
+    description:
+      "Beta prototype sales iPad gen-z marketing network effects value proposition",
+    name: "Monica Geller",
+  },
+]
+
+type TQuotes = {
+  id: number
+  quote: string
+  name: string
+  position: string
+}[]
+
+let quotes: TQuotes = [
+  {
+    id: 1,
+    quote:
+      "Buyer buzz partner network disruptive non-disclosure agreement business",
+    name: "Albus Dumbledore",
+    position: "Manager @ Hogwarts",
+  },
+  {
+    id: 2,
+    quote:
+      "Learning curve infrastructure value proposition advisor strategy user experience hypotheses investor.",
+    name: "Severus Snape",
+    position: "Manager @ Slytherin",
+  },
+  {
+    id: 3,
+    quote:
+      "Release facebook responsive web design business model canvas seed money monetization.",
+    name: "Harry Potter",
+    position: "Team Leader @ Gryffindor",
+  },
+]
+
+type TServiceCards = {
+  id: number
+  title: string
+  description: string
+  link: string
+}[]
+
+let serviceCards: TServiceCards = [
+  {
+    id: 1,
+    title: "Cool feature title",
+    description: "Learning curve network effects return on investment.",
+    link: "Explore page",
+  },
+  {
+    id: 2,
+    title: "Even cooler feature",
+    description: "Learning curve network effects return on investment.",
+    link: "Explore page",
+  },
+  {
+    id: 1,
+    title: "Cool feature title",
+    description: "Learning curve network effects return on investment.",
+    link: "Explore page",
+  },
+]
+---
+
+<Layout title={title} isDark={isDark}>
+  <section class="bg-secondary relative py-10">
+    <div
+      class="absolute -top-60 -right-32 bg-base-300 rounded-full w-96 h-96 md:w-[800px] md:h-[800px] md:-top-[600px] md:-right-60 xl:w-[1200px] xl:h-[1200px] xl:-top-[700px] xl:-right-[500px]"
+    >
+    </div>
+    <div
+      class="max-w-screen-xl mx-auto h-auto relative z-[1] lg:grid grid-cols-2 gap-24"
+    >
+      <div class="h-full lg:flex flex-col justify-center">
+        <h2 class="mt-0">Save time by building fast with Boldo Template</h2>
+        <h4>
+          Funding handshake buyer business-to-business metrics iPad partnership.
+          First mover advantage innovator success deployment non-disclosure.
+        </h4>
+        <div class="flex flex-col items-start gap-10 pt-8 lg:flex-row">
+          <button class="btn btn-accent text-secondary">Buy template</button
+          ><button class="btn btn-primary btn-outline text-primary"
+            >Explore</button
+          >
+        </div>
+      </div>
+      <div class="not-prose pt-10 h-full lg:p-0">
+        <Image
+          src={"/assets/hero-graphics.svg"}
+          alt="hero graphics"
+          width={500}
+          height={500}
+          format={"svg"}
+          class="w-full"
+        />
+      </div>
+      <Carousel />
+    </div>
+  </section>
+  <section>
+    <div class="flex flex-col gap-10 h-auto">
+      <h4 class="text-neutral mx-auto">Our Services</h4>
+      <h2 class="text-black text-center mx-auto">
+        Handshake infographic mass market crowdfunding interation.
+      </h2>
+      <div
+        class="flex flex-col items-center md:grid w-full h-auto md:grid-cols-2 grid-flow-row md:gap-10 lg:grid-cols-3 md:place-items-center"
+      >
+        {
+          serviceCards.map((card) => (
+            <div class="w-[300px] h-[575px] flex flex-col gap-4 prose-img:m-0 prose-headings:m-0 prose-p:m-0">
+              <motion.div whileHover={{ y: -20 }} client:load>
+                <Image
+                  src={`/assets/services-${card.id}.png`}
+                  alt="image"
+                  format={"png"}
+                  width={300}
+                  height={350}
+                />
+              </motion.div>
+              <h4 class="text-black">{card.title}</h4>
+              <p class="text-neutral">{card.description}</p>
+              <h4 class="text-black font-semibold relative inline-flex gap-4 items-center w-fit after:absolute after:w-full after:h-px after:bg-black after:-bottom-4 after:left-0 cursor-pointer ">
+                {card.link}
+                <FaArrowRight className="fill-secondary" />
+              </h4>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      class="flex flex-col gap-10 md:gap-20 lg:gap-36 py-10 md:pt-20 md:pb-32"
+    >
+      <div class="flex flex-col gap-20 h-auto prose-img:m-0 lg:flex-row">
+        <div class="relative w-full h-auto max-w-[500px] max-h-[600px] mx-auto">
+          <Image
+            src={"/assets/service-card-1.png"}
+            alt="service card"
+            format={"png"}
+            width={500}
+            height={500}
+          />
+          <Image
+            src={"/assets/service-overlay-1.png"}
+            alt="service overlay"
+            format={"png"}
+            width={200}
+            height={300}
+            class="absolute -bottom-28 right-0"
+          />
+        </div>
+        <div class="flex flex-col h-auto">
+          <h3 class="text-black font-semibold">
+            We connect our customers with the best, and help them keep up-and
+            stay open.
+          </h3>
+          <ul class="p-0 list-none">
+            <li class="flex items-start gap-4">
+              <FaCheckCircle className="fill-secondary pt-1 w-5 h-auto" />
+              We connect our customers with the best.
+            </li>
+            <li class="flex items-start gap-4">
+              <FaCheckCircle className="fill-secondary pt-1 w-5 h-auto" />
+              Advisor success customer launch party.
+            </li>
+            <li class="flex items-start gap-4">
+              <FaCheckCircle className="fill-secondary pt-1 w-5 h-auto" />
+              Business-to-consumer long tail.
+            </li>
+          </ul>
+          <button class="btn btn-secondary text-primary">Start Now</button>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-20 h-auto prose-img:m-0 lg:flex-row-reverse"
+      >
+        <div class="relative w-full h-auto max-w-[500px] max-h-[600px] mx-auto">
+          <Image
+            src={"/assets/service-card-2.png"}
+            alt="service card"
+            format={"png"}
+            width={500}
+            height={500}
+          />
+          <Image
+            src={"/assets/service-overlay-2.png"}
+            alt="service overlay"
+            format={"png"}
+            width={225}
+            height={300}
+            class="absolute -bottom-28 left-0"
+          />
+        </div>
+        <div class="flex flex-col h-auto">
+          <h3 class="text-black font-semibold">
+            We connect our customers witht he best, and help them keep up-and
+            stay open.
+          </h3>
+          <ul class="list-none p-0 m-0">
+            <li
+              class="flex items-start gap-4 bg-primary rounded-lg hover:bg-secondary group p-2 hover:text-primary"
+            >
+              <FiFeather
+                className="text-secondary w-6 h-auto pt-1 group-hover:text-primary"
+              />
+              We connect our customers with the best.
+            </li>
+            <li
+              class="flex items-start gap-4 bg-primary rounded-lg hover:bg-secondary group p-2 hover:text-primary"
+            >
+              <FiEye
+                className="text-secondary w-6 h-auto pt-1 group-hover:text-primary"
+              />
+              Advisor success customer launch party.
+            </li>
+            <li
+              class="flex items-start gap-4 bg-primary rounded-lg hover:bg-secondary group p-2 hover:text-primary"
+            >
+              <FiSun
+                className="text-secondary w-6 h-auto pt-1 group-hover:text-primary"
+              />
+              Business-to-consumer long tail.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-secondary">
+    <div
+      class="flex flex-col gap-10 h-auto items-center pb-[72px] lg:grid lg:grid-cols-2 lg:place-items-center lg:grid-flow-row xl:grid-cols-3"
+    >
+      <h2 class="mb-0 lg:col-start-1 lg:col-span-full">
+        An enterprise template to ramp up your company website
+      </h2>
+      <div
+        class="w-full h-auto inline-flex gap-8 justify-end lg:row-start-2 lg:col-start-1 lg:col-span-full"
+      >
+        <button
+          class="bg-primary rounded-full w-20 h-20 hover:scale-105 focus:scale-105 transition-all duration-500 ease-out"
+        >
+          <AiOutlineArrowLeft className="w-10 h-10 m-auto text-secondary" />
+        </button>
+        <button
+          class="bg-primary rounded-full w-20 h-20 hover:scale-105 focus:scale-105 transition-all duration-500 ease-out"
+        >
+          <AiOutlineArrowRight className="w-10 h-10 m-auto text-secondary" />
+        </button>
+      </div>
+      {
+        quotes.map((quote) => (
+          <div class="w-full h-auto p-10 rounded-xl bg-primary prose-headings:text-secondary prose-headings:m-0 prose-p:text-secondary prose-p:m-0 flex flex-col gap-10 hover:transform hover:-translate-y-5 transition-all duration-300 ease-in-out">
+            <h4>&quot;{quote.quote}&quot;</h4>
+            <div class="flex gap-4 items-center">
+              <Image
+                src={`/assets/testimonial-icon-${quote.id}.png`}
+                alt="profile picture"
+                format={"png"}
+                width={60}
+                height={60}
+              />
+              <div class="flex flex-col h-auto gap-2">
+                <p class="font-semibold">{quote.name}</p>
+                <p>{quote.position}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <section>
+    <div
+      class="flex flex-col gap-10 h-full items-center prose-headings:text-secondary prose-headings:m-0 prose-p:m-0 prose-img:m-0 py-10 md:py-20 lg:grid lg:grid-cols-2 lg:gap-20"
+    >
+      <Image
+        src={"/assets/connect-image.png"}
+        alt="connect banner image"
+        format={"png"}
+        width={1200}
+        height={400}
+        class="lg:col-start-1 lg:col-span-full w-full"
+      />
+      <h2 class="lg:row-start-2 lg:col-start-1">
+        We connect our customers with the best, and help them keep up-and stay
+        open.
+      </h2>
+      <div
+        class="flex flex-col gap-8 h-auto prose-hr:my-0 lg:row-start-2 lg:col-start-2"
+      >
+        <div tabindex="0" class="collapse group">
+          <h3
+            class="collapse-title text-xl font-medium inline-flex justify-between gap-4 items-start !p-4"
+          >
+            We connect our customers with the best?
+            <IoIosArrowDropdownCircle
+              className="text-secondary group-hover:rotate-180 transition-all duration-500 ease-out w-10 h-auto"
+            />
+          </h3>
+          <hr class="bg-neutral mx-4" />
+          <div class="collapse-content">
+            <p class="text-sm md:text-base">Content not provided by design</p>
+          </div>
+        </div>
+        <div tabindex="0" class="collapse group">
+          <h3
+            class="collapse-title text-xl font-medium inline-flex justify-between gap-4 items-start !p-4"
+          >
+            Android research & development rockstar?
+            <IoIosArrowDropdownCircle
+              className="text-secondary group-hover:rotate-180 transition-all duration-500 ease-out w-10 h-auto"
+            />
+          </h3>
+
+          <hr class="bg-neutral mx-4" />
+          <div class="collapse-content">
+            <p class="text-sm md:text-base">Content not provided by design</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div
+      class="flex flex-col gap-10 h-auto py-10 md:py-20 lg:grid lg:grid-cols-2 lg:place-items-start xl:grid-cols-3 md:gap-20"
+    >
+      <h4 class="text-neutral w-fit mx-auto lg:col-start-1 lg:col-span-full">
+        Our Blog
+      </h4>
+      <h2
+        class="text-black text-center w-fit mx-auto lg:row-start-2 lg:col-start-1 lg:col-span-full"
+      >
+        Value proposition accelerator product management venture
+      </h2>
+      {
+        blogCards.map((card) => (
+          <div class="w-full min-h-[550px] h-full flex flex-col gap-6 prose-headings:m-0 prose-p:m-0 prose-img:m-0 max-w-[400px] mx-auto">
+            <Image
+              src={`/assets/blog-${card.id}.png`}
+              format={"png"}
+              alt="blog image"
+              width={400}
+              height={250}
+            />
+            <div class="inline-flex justify-between items-center w-full h-auto">
+              <h4 class="font-semibold text-secondary">{card.category}</h4>
+              <p class="text-neutral">{card.date}</p>
+            </div>
+            <h4 class="text-black">{card.description}</h4>
+            <div class="inline-flex w-full h-auto items-center gap-2 mt-auto">
+              <Image
+                src={`/assets/blog-icon-${card.id}.png`}
+                alt="profile icon"
+                width={40}
+                height={40}
+                format={"png"}
+              />
+              <p class="text-black">{card.name}</p>
+            </div>
+          </div>
+        ))
+      }
+      <button
+        class="btn btn-secondary btn-outline text-secondary mx-auto lg:col-start-1 lg:col-span-full"
+        >Load More</button
+      >
+    </div>
+  </section>
+  <section>
+    <div
+      class="bg-secondary relative rounded-xl flex flex-col gap-10 h-auto py-20 px-10 overflow-hidden prose-headings:m-0 lg:px-40"
+    >
+      <div
+        class="absolute w-80 h-80 bg-base-300 -top-20 -right-20 rounded-full pointer-events-none md:w-[500px] md:h-[500px] md:-top-52 md:-right-52"
+      >
+      </div>
+      <h2 class="relative text-center">
+        An enterprise template to ramp up your company website
+      </h2>
+      <div
+        class="flex flex-col w-full items-center gap-4 relative md:flex-row md:justify-center"
+      >
+        <input
+          type="text"
+          class="input input-primary text-black placeholder:text-black rounded-full"
+          placeholder="Your email address"
+        />
+        <button class="btn btn-accent text-secondary">Start now</button>
+      </div>
+    </div>
+  </section>
+</Layout>

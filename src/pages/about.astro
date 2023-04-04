@@ -1,0 +1,235 @@
+---
+import Layout from "@components/layout.astro"
+import { Image } from "@astrojs/image/components"
+let title = Astro.url.pathname.slice(1)
+title = title.charAt(0).toUpperCase() + title.slice(1)
+let isDark: boolean = false
+
+let teamCards = [
+  {
+    id: 1,
+    name: "Michael Scott",
+    role: "CEO",
+  },
+  {
+    id: 2,
+    name: "Dwight Schrute",
+    role: "Associate",
+  },
+  {
+    id: 3,
+    name: "Pam Beetsley",
+    role: "MVP",
+  },
+]
+---
+
+<Layout title={title} isDark={isDark}>
+  <section class="bg-secondary">
+    <div
+      class="flex flex-col gap-10 h-auto pt-10 pb-20 md:pt-10 md:pb-40 prose-headings:m-0 lg:px-40"
+    >
+      <h4 class="text-center w-full text-primary">About</h4>
+      <h1 class="text-center w-full">
+        We love to make great things, things that matter.
+      </h1>
+      <h4 class="text-center w-full text-primary">
+        Funding handshake buyer business-to-business metrics iPad partnership.
+        First mover advantage innovator success deployment non-disclosure.
+      </h4>
+    </div>
+  </section>
+  <section>
+    <div class="flex flex-col gap-10 py-10 md:py-20 prose-img:m-0">
+      <div
+        class="grid grid-cols-2 gap-10 w-full h-auto -mt-20 md:-mt-40 lg:grid-cols-3 lg:grid-rows-2 lg:place-items-center"
+      >
+        <img
+          src="/assets/about-1.png"
+          alt="image 1"
+          class="w-full h-full lg:col-start-1 lg:col-end-1 lg:row-start-1 max-w-[300px]"
+        />
+        <img
+          src="/assets/about-2.png"
+          alt="image 2"
+          class="w-full h-full lg:row-start-2 lg:col-start-1 lg:col-end-1 max-w-[300px]"
+        />
+        <img
+          src="/assets/about-3.png"
+          alt="image 3"
+          class="col-start-1 col-span-full md:mx-auto lg:row-span-full lg:col-start-2 lg:col-end-2 w-full h-full max-w-[400px]"
+        />
+        <img
+          src="/assets/about-4.png"
+          alt="image 4"
+          class="w-full h-full lg:col-start-3 lg:row-start-1 max-w-[300px]"
+        />
+        <img
+          src="/assets/about-5.png"
+          alt="image 5"
+          class="w-full h-full lg:col-start-3 lg:row-start-2 max-w-[300px]"
+        />
+      </div>
+      <h4 class="text-neutral md:px-24">Our story</h4>
+      <h2 class="text-black md:px-24">
+        Handshake infographic mass market crowdfunding iteration.
+      </h2>
+      <h4 class="text-neutral md:px-24">
+        Conversion angel investor entrepreneur first mover advantage. Handshake
+        infographic mass market crowdfunding iteration. Traction stock user
+        experience deployment beta innovator incubator focus. Sales user
+        experience branding growth hacking holy grail monetization conversion
+        prototype stock network effects. Learning curve network effects return
+        on investment bootstrapping business-to-consumer.
+      </h4>
+    </div>
+  </section>
+  <section class="bg-secondary">
+    <div class="flex flex-col gap-10 h-auto py-10 md:py-20">
+      <h4 class="text-center">Our numbers</h4>
+      <h2 class="text-center">
+        Handshake infographic mass market crowdfunding iteration.
+      </h2>
+      <div
+        class="flex flex-col md:flex-row md:flex-wrap md:justify-center h-auto justify-between items-center gap-10"
+      >
+        <div class="flex flex-col gap-4 items-center h-auto">
+          <h2 class="text-accent text-7xl m-0">120m</h2>
+          <p class="text-primary">Cool feature title</p>
+        </div>
+        <div class="flex flex-col gap-4 items-center h-auto">
+          <h2 class="text-accent text-7xl m-0">10.000</h2>
+          <p class="text-primary">Cool feature title</p>
+        </div>
+        <div class="flex flex-col gap-4 items-center h-auto">
+          <h2 class="text-accent text-7xl m-0">240</h2>
+          <p class="text-primary">Cool feature title</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="flex flex-col gap-10 h-auto py-10 md:py-20 prose-headings:m-0">
+      <h4 class="text-neutral lg:px-24">Our team</h4>
+      <h2 class="text-black lg:px-24">The leadership team</h2>
+      <h4 class="text-neutral lg:px-24">
+        Conversion angel investor entrepreneur first mover advantage. Handshake
+        infographic mass market crowdfunding iteration. Traction stock user
+        experience deployment beta innovator incubator focus.
+      </h4>
+      <div
+        class="flex flex-col gap-10 prose-img:m-0 md:flex-row md:flex-wrap lg:justify-center"
+      >
+        {
+          teamCards.map((card) => (
+            <div class="flex flex-col gap-4 h-auto mx-auto lg:mx-0">
+              <Image
+                src={`/assets/about-team-${card.id}.png`}
+                alt={`associate ${card.name}`}
+                format={"png"}
+                width={300}
+                height={350}
+              />
+              <h3 class="text-black">{card.name}</h3>
+              <h4 class="text-neutral">{card.role}</h4>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <section class="bg-secondary">
+    <div
+      class="flex flex-col gap-10 h-auto py-10 md:py-20 prose-headings:m-0 prose-p:m-0 prose-img:m-0 lg:gap-20 lg:px-24"
+    >
+      <p class="text-primary">Our values</p>
+      <h2>Things in we believe</h2>
+      <p class="text-primary">
+        Conversion angel investor entrepreneur first mover advantage. Handshake
+        infographic mass market crowdfunding iteration. Traction stock user
+        experience deployment beta innovator incubator focus.
+      </p>
+      <div
+        class="flex flex-col md:flex-row md:flex-wrap lg:flex-col gap-10 h-auto lg:gap-20"
+      >
+        <div
+          class="flex flex-col lg:flex-row gap-5 items-start mx-auto max-w-[300px] lg:max-w-full"
+        >
+          <Image
+            src={"/assets/about-values-1.png"}
+            alt="values image"
+            format={"png"}
+            width={300}
+            height={300}
+          />
+          <div class="flex flex-col gap-10 h-auto lg:pt-8">
+            <h4>We are commited.</h4>
+            <p class="text-primary">
+              Conversion angel investor entrepreneur first mover advantage.
+              Handshake infographic mass market crowdfunding iteration.
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row gap-5 items-start mx-auto max-w-[300px] lg:max-w-full"
+        >
+          <Image
+            src={"/assets/about-values-2.png"}
+            alt="values image"
+            format={"png"}
+            width={300}
+            height={300}
+          />
+          <div class="flex flex-col gap-10 h-auto lg:pt-8">
+            <h4>We are responsible.</h4>
+            <p class="text-primary">
+              Conversion angel investor entrepreneur first mover advantage.
+              Handshake infographic mass market crowdfunding iteration.
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col lg:flex-row gap-5 items-start mx-auto max-w-[300px] lg:max-w-full"
+        >
+          <Image
+            src={"/assets/about-values-3.png"}
+            alt="values image"
+            format={"png"}
+            width={300}
+            height={300}
+          />
+          <div class="flex flex-col gap-10 h-auto lg:pt-8">
+            <h4>We aim for progress.</h4>
+            <p class="text-primary">
+              Conversion angel investor entrepreneur first mover advantage.
+              Handshake infographic mass market crowdfunding iteration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="pt-10 md:pt-20">
+    <div
+      class="bg-secondary relative rounded-xl flex flex-col gap-10 h-auto py-20 px-10 overflow-hidden prose-headings:m-0 lg:px-40"
+    >
+      <div
+        class="absolute w-80 h-80 bg-base-300 -top-20 -right-20 rounded-full pointer-events-none md:w-[500px] md:h-[500px] md:-top-52 md:-right-52"
+      >
+      </div>
+      <h2 class="relative text-center">
+        An enterprise template to ramp up your company website
+      </h2>
+      <div
+        class="flex flex-col w-full items-center gap-4 relative md:flex-row md:justify-center"
+      >
+        <input
+          type="text"
+          class="input input-primary text-black placeholder:text-black rounded-full"
+          placeholder="Your email address"
+        />
+        <button class="btn btn-accent text-secondary">Start now</button>
+      </div>
+    </div>
+  </section>
+</Layout>

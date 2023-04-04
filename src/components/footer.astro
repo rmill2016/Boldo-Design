@@ -1,0 +1,58 @@
+---
+import { Image } from "@astrojs/image/components"
+import { useLayoutEffect } from "react"
+
+type TColumns = {
+  id: number
+  links: string[]
+}[]
+
+let columns: TColumns = [
+  {
+    id: 1,
+    links: ["Landings", "Home", "Products", "Services"],
+  },
+  {
+    id: 2,
+    links: ["Company", "Home", "Careers", "Services"],
+  },
+  {
+    id: 3,
+    links: ["Resources", "Blog", "Products", "Services"],
+  },
+]
+---
+
+<footer>
+  <div
+    class="flex flex-col gap-10 h-auto lg:grid lg:grid-cols-2 lg:justify-center lg:items-center prose-img:m-0 py-10 md:py-20"
+  >
+    <div class="lg:col-start-1 lg:col-end-1">
+      <Image
+        src={"/assets/Logo-dark.svg"}
+        alt="Logo"
+        format={"svg"}
+        width={150}
+        height={40}
+      />
+      <p class="text-neutral pb-10">
+        Social media validation business model canvas graphical user interface
+        launch party creative facebook iPad twitter.
+      </p>
+      <p class="text-neutral">All rights reserved.</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:h-full lg:pb-20">
+      {
+        columns.map((column) => (
+          <ul class="list-none p-0 m-0 even:ml-auto last:col-span-full last:mx-auto md:even:mx-auto lg:h-full lg:flex lg:flex-col lg:justify-between md:last:col-start-3 md:last:ml-auto last:md:mr-0">
+            {column.links.map((link) => (
+              <li class="text-neutral first:text-black first:font-semibold">
+                {link}
+              </li>
+            ))}
+          </ul>
+        ))
+      }
+    </div>
+  </div>
+</footer>

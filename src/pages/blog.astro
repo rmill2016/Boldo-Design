@@ -1,0 +1,169 @@
+---
+import Layout from "@components/layout.astro"
+import { Image } from "@astrojs/image/components"
+let title = Astro.url.pathname.slice(1)
+title = title.charAt(0).toUpperCase() + title.slice(1)
+let isDark: boolean = true
+
+let blogCards = [
+  {
+    id: 1,
+    category: "category",
+    date: "November 22, 2021",
+    description: "Pitch termsheet backing validation focus release.",
+    name: "Chandler Bing",
+  },
+  {
+    id: 2,
+    category: "category",
+    date: "November 22, 2021",
+    description:
+      "Seed round direct mailing non-disclosure agreement graphical user interface rockstar.",
+    name: "Rachel Green",
+  },
+  {
+    id: 3,
+    category: "category",
+    date: "November 22, 2021",
+    description:
+      "Beta prototype sales iPad gen-z marketing network effects value proposition",
+    name: "Monica Geller",
+  },
+  {
+    id: 4,
+    category: "category",
+    date: "November 22, 2021",
+    description: "Pitch termsheet backing validation focus release.",
+    name: "Chandler Bing",
+  },
+  {
+    id: 5,
+    category: "category",
+    date: "November 22, 2021",
+    description:
+      "Seed round direct mailing non-disclosure agreement graphical user interface rockstar.",
+    name: "Rachel Green",
+  },
+  {
+    id: 6,
+    category: "category",
+    date: "November 22, 2021",
+    description:
+      "Beta prototype sales iPad gen-z marketing network effects value proposition",
+    name: "Monica Geller",
+  },
+]
+---
+
+<Layout title={title} isDark={isDark}>
+  <section>
+    <div
+      class="flex flex-col gap-10 h-auto py-10 prose-headings:m-0 prose-p:m-0 prose-img:m-0"
+    >
+      <div class="flex flex-col gap-4">
+        <p class="text-secondary text-center">Blog</p>
+        <h1 class="text-secondary text-center">Thoughts and words</h1>
+      </div>
+      <div
+        class="flex flex-col items-center lg:flex-row lg:justify-between lg:items-center gap-20 h-auto"
+      >
+        <Image
+          src={"/assets/blogpage-1.png"}
+          alt="blog page image"
+          format={"png"}
+          width={550}
+          height={380}
+        />
+        <div class="flex flex-col gap-10">
+          <div class="inline-flex gap-2 h-auto items-center">
+            <p class="font-semibold text-secondary">Category</p>
+            <p class="text-neutral">November 22, 2021</p>
+          </div><h2 class="text-black">
+            Pitch termsheet backing validation focus release.
+          </h2>
+          <div class="inline-flex gap-2 items-center">
+            <Image
+              src={"/assets/blog-icon-1.png"}
+              alt="Profile Icon"
+              format={"png"}
+              width={40}
+              height={40}
+            />
+            <p class="text-black">Chandler Bing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <hr class="bg-neutral w-full h-1 m-0" />
+  </section>
+  <section>
+    <div
+      class="flex flex-col items-center gap-10 h-auto py-10 md:py-20 prose-headings:m-0 prose-p:m-0 prose-img:p-0"
+    >
+      <h2 class="text-secondary text-center md:col-span-full">Latest News</h2>
+      <div
+        class="flex flex-col gap-20 h-auto md:grid md:grid-cols-2 lg:grid-cols-3 lg:gap-10"
+      >
+        {
+          blogCards.map((card) => (
+            <div class="flex flex-col gap-4 h-auto w-full max-w-[300px] md:max-h-[550px]">
+              <Image
+                src={`/assets/blog-${card.id}.png`}
+                alt={`Blog ${card.id}`}
+                format={"png"}
+                width={300}
+                height={200}
+              />
+              <div class="inline-flex gap-2 h-auto items-center">
+                <p class="font-semibold text-secondary text-sm">
+                  {card.category}
+                </p>
+                <p class="neutral text-sm">{card.date}</p>
+              </div>
+              <p class="text-black">{card.description}</p>
+              <div class="inline-flex gap-2 h-auto items-center md:mt-auto md:mb-0">
+                <Image
+                  src={`/assets/blog-icon-${card.id}.png`}
+                  alt="Profile Icon"
+                  format={"png"}
+                  width={40}
+                  height={40}
+                />
+                <p class="text-secondary">{card.name}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+      <button
+        class="btn btn-secondary btn-outline mx-auto md:col-span-full text-secondary"
+        >Load More</button
+      >
+    </div>
+  </section>
+  <section>
+    <div
+      class="bg-secondary relative rounded-xl flex flex-col gap-10 h-auto py-20 px-10 overflow-hidden prose-headings:m-0 lg:px-40"
+    >
+      <div
+        class="absolute w-80 h-80 bg-base-300 -top-20 -right-20 rounded-full pointer-events-none md:w-[500px] md:h-[500px] md:-top-52 md:-right-52"
+      >
+      </div>
+      <h2 class="relative text-center">
+        An enterprise template to ramp up your company website
+      </h2>
+      <div
+        class="flex flex-col w-full items-center gap-4 relative md:flex-row md:justify-center"
+      >
+        <input
+          type="text"
+          class="input input-primary text-black placeholder:text-black rounded-full"
+          placeholder="Your email address"
+        />
+        <button class="btn btn-accent text-secondary">Start now</button>
+      </div>
+    </div>
+  </section>
+</Layout>

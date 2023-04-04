@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply w-full h-full min-h-screen prose prose-headings:font-manrope prose-p:font-sans prose-headings:text-primary prose-p:text-neutral max-w-full !bg-white prose-li:text-neutral overflow-x-hidden prose-fix;
+  }
+  main,
+  section {
+    @apply w-full h-auto;
+  }
+  section,
+  header,
+  footer {
+    @apply px-10 md:px-16 xl:px-24;
+  }
+  nav,
+  footer,
+  section > div:first-of-type {
+    @apply max-w-screen-xl mx-auto;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-[56px] py-[16px] rounded-[56px] font-manrope md:text-xl md:pb-10 font-bold w-fit;
+  }
+  .menu-toggle {
+    @apply w-8 h-6 cursor-pointer relative z-20 md:hidden;
+  }
+  .menu-toggle .one,
+  .menu-toggle .two,
+  .menu-toggle .three {
+    @apply w-full h-1 backface-hidden duration-300 absolute;
+  }
+  .menu-toggle .one {
+    @apply top-0;
+  }
+  .menu-toggle .two {
+    @apply top-[calc(50%_-_2px)];
+  }
+  .menu-toggle .three {
+    @apply bottom-0;
+  }
+  .menu-toggle.on .one {
+    @apply transform rotate-45 translate-y-2;
+  }
+  .menu-toggle.on .two {
+    @apply opacity-0;
+  }
+  .menu-toggle.on .three {
+    @apply transform -rotate-45 -translate-y-3;
+  }
+  .prose-fix {
+    @apply md:prose-h1:text-6xl prose-h1:text-5xl prose-h1:leading-snug prose-h1:font-normal prose-h2:font-normal prose-h3:font-normal  md:prose-h1:leading-snug prose-h2:leading-snug prose-h3:leading-tight prose-h4:leading-8 md:prose-h2:text-5xl prose-h2:text-4xl md:prose-h3:text-4xl prose-h3:text-3xl md:prose-h4:text-3xl prose-h4:text-2xl prose-h4:font-normal md:prose-p:text-2xl prose-p:text-xl;
+  }
+  .slider {
+    @apply bg-secondary h-[100px] w-full overflow-hidden relative col-span-full before:from-secondary before:to-transparent before:bg-gradient-to-r before:w-[50px] md:before:w-[100px] before:h-[100px] before:absolute before:z-[2] after:from-secondary after:to-transparent after:bg-gradient-to-l after:w-[50px] md:after:w-[100px] after:h-[100px] after:absolute after:z-[2] before:left-0 before:top-0 after:right-0 after:top-0;
+  }
+  .slide-track {
+    @apply animate-slide flex w-[calc(250px_*_16)] gap-8;
+  }
+  .slide {
+    @apply w-[250px] h-[100px];
+  }
+}

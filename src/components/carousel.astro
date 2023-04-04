@@ -1,0 +1,31 @@
+---
+import { Image } from "@astrojs/image/components"
+let slides = [
+  "/assets/carousel-1.svg",
+  "/assets/carousel-2.svg",
+  "/assets/carousel-1.svg",
+  "/assets/carousel-2.svg",
+  "/assets/carousel-1.svg",
+  "/assets/carousel-2.svg",
+  "/assets/carousel-1.svg",
+  "/assets/carousel-2.svg",
+]
+---
+
+<div class="slider">
+  <div class="slide-track">
+    {
+      slides.map((slide) => (
+        <div class="slide">
+          <Image
+            src={slide}
+            alt="brand logo"
+            width={250}
+            height={100}
+            format={"svg"}
+          />
+        </div>
+      ))
+    }
+  </div>
+</div>
